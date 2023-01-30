@@ -1,0 +1,282 @@
+:root {
+    /* primary colors */
+    --p-blue: hsl(215, 51%, 70%);
+    --p-cyan: hsl(178, 100%, 50%);
+    /* neutral colors */
+    --n-bg: hsl(217, 54%, 11%);
+    --n-card: hsl(216, 50%, 16%);
+    --n-line: hsl(215, 32%, 27%);
+    --n-white: hsl(0, 0%, 100%);
+
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+    
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+    
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+}
+
+/* colors */
+
+.p-blue {
+    color: var(--p-blue);
+}
+
+.p-cyan {
+    color: var(--p-cyan);
+}
+
+.n-bg {
+    color: var(--n-bg);
+}
+
+.n-card {
+    color: var(--n-card);
+}
+
+.n-line {
+    color: var(--n-line);
+}
+
+.n-white {
+    color: var(--n-white);
+}
+
+/* main css */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+html {
+    font-size: 100%;
+}
+
+* img {
+    display: block;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--n-bg);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 21.875rem;
+    padding: 1.56rem;
+    background: var(--n-card);
+    border-radius: 0.938rem;
+    box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.1);
+    margin: 1.25rem;
+    /* transition: ease-in-out 0.8s; */
+    /* transform: scale(1); */
+
+}
+
+/* card hover effect */
+.card {
+    position: relative;
+}
+
+.card-img {
+    display: block;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.card .image::before {
+    content: url(images/icon-view.svg);
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: hsl(178, 100%, 50%, 0.5);
+    
+    width: 100%;
+    height: 100%;
+    border-radius: 0.625rem;
+    opacity: 0;
+    
+    cursor: pointer;
+    transition: ease-in-out 0.8s;
+}
+
+.card .image:hover::before {
+    opacity: 1;
+    transition: ease-out 0.8s;
+}
+
+/* >* targets all direct children from card-overlay */
+.card-overlay>* {
+    transform: scale(150%);
+    transition: ease-out transform 0.8s;
+}
+
+.card-overlay:hover>* {
+    transform: scale(100%);
+    transition: ease-out transform 0.8s;
+}
+
+
+/* styling the card body */
+.container h1 {
+    margin: 1.5rem 0 0;
+}
+
+.container h1 a{
+    display: block;
+    font-size: 1.35rem;
+    font-weight: 600;
+    transition: color .3s;
+}
+
+.container h1 a:hover {
+    color: var(--p-cyan);
+}
+
+.container p {
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.5;
+    padding-top: 16px;
+}
+
+.container ul li {
+    display: flex;
+    align-items: center;
+}
+
+.price {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+}
+
+.price li:first-child {
+    font-weight: 600;
+}
+
+.price li:first-child::before {
+    display: inline-block;
+    content: "";
+    background: url(images/icon-ethereum.svg) no-repeat center;
+    width: 11px;
+    height: 18px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.price li:nth-child(2)::before {
+    display: inline-block;
+    content: "";
+    background: url(images/icon-clock.svg) no-repeat center;
+    width: 17px;
+    height: 17px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.line {
+    display: flex;
+    width: auto;
+    height: 1px;
+    background-color: var(--n-line);
+    margin-top: 24px;
+}
+
+
+/* styling the creator part */
+
+.container .creator{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+.container .creator img{
+    max-width: 2rem;
+    max-height: 2rem;
+    border: 1px solid var(--n-white);
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.container .creator figcaption,
+.container .creator a {
+    font-size: 1rem;
+    font-weight: 400;
+}
+.container .creator figcaption p{
+    display: inline;
+}
+.container .creator a:hover{
+    color: var(--p-cyan);
+}
+
+
+
+/* responsive */
+@media (max-width: 375px) {
+    .container {
+      flex-wrap: wrap;
+      margin: 25px;
+    }
+  
+    .container h1 {
+      padding-top: 20px;
+    }
+  
+    .container p {
+      font-size: 1rem;
+      padding-top: 14px;
+    }
+  
+    .price {
+      font-size: 0.9rem;
+      padding-top: 16px;
+    }
+  
+    .line {
+      margin-top: 14px;
+    }
+
+    .creator {
+        padding-bottom: 0;
+    }
+  
+    .creator img {
+      margin-right: 14px;
+    }
+}
+  
+ 
